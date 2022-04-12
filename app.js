@@ -6,7 +6,6 @@ const _ = require("lodash");
 
 const app = express();
 
-
 // let items = ["First thing", "Second thing", "Third thing"];
 // let workItems = [];
 
@@ -17,7 +16,7 @@ app.use(express.static("public"));
 
 // ======================DATABASE===========================
 
-mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://admin:Admin%40123@cluster0.oc4tr.mongodb.net/todoListDB?retryWrites=true&w=majority", {useNewUrlParser: true});
 
 // Creating the Schema.
 const itemSchema = new mongoose.Schema({
@@ -139,6 +138,11 @@ app.get("/:customListName", function (req, res) {
     }
 });
 
-app.listen(8080, function () {
-    console.log("Server is running on port 8080");
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 8080;
+}
+
+app.listen(port, function () {
+    console.log("Server is running on port " + port);
 });
