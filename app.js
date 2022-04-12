@@ -51,7 +51,6 @@ List.find(function (err, items) {
 // ========================================================
 
 app.get("/", function (req, res) {
-    console.log(1)
     List.findOne({ name: "Today" }, function (err, foundItem) {
         if (!foundItem) {
             const list = List({
@@ -74,7 +73,6 @@ app.get("/", function (req, res) {
 });
 
 app.post("/", function (req, res) {
-    console.log(2)
     let itemName = req.body.newItem;
     let listName = req.body.list;
     let item = new Item({
@@ -116,7 +114,6 @@ app.post("/delete", function (req, res) {
 });
 
 app.get("/:customListName", function (req, res) {
-    console.log(4)
     let customListName = _.capitalize(_.camelCase(req.params.customListName));
     
     if (customListName === "Today") {
